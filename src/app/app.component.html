@@ -1,3 +1,36 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  
+ <ion-menu side="start" menuId="first" contentId="main" class="text-white">
+  <ion-header style="background-color: #3880ff;">
+    <ion-toolbar color="primary">
+      <ion-title>Anderson Romero</ion-title>
+    </ion-toolbar>
+    <img src="../../assets/user.png" style="padding: 50px;" alt="" srcset="" >
+  </ion-header>
+ 
+ 
+  <ion-content>
+    <ion-list>
+
+      <ion-item routerLink="/tabs/tab1">
+        <ion-icon name="caret-forward-circle" slot="start"></ion-icon>
+        Peliculas
+      </ion-item>
+
+      <ion-item routerLink="/tabs/tab2">
+        <ion-icon  name="search" slot="start"></ion-icon>
+        Buscar
+      </ion-item>
+
+      <ion-item routerLink="/tabs/tab3">
+        <ion-icon name="thumbs-up" slot="start"></ion-icon>
+        Favoritos
+      </ion-item>
+ 
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main"></ion-router-outlet>
+  
 </ion-app>

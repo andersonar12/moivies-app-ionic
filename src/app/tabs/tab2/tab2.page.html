@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+
+    <ion-buttons  slot="start">
+      <ion-button class="menu-toggle">
+        <ion-icon  name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      Buscar
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-toolbar class="pt-4">
+  <ion-searchbar placeholder="Buscar Pelicula" animated [value]="textSearch"(ionChange)="onSearchChange($event)" [debounce]="700" ></ion-searchbar>
+</ion-toolbar>
+
+
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Buscar</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-grid fixed *ngIf="loading">
+    <ion-row>
+      <ion-col class="text-center">
+        <ion-spinner name="bubbles"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngIf="moviesSearched.length === 0">
+    <ion-list-header>
+      <ion-label>Ideas</ion-label>
+
+    </ion-list-header>
+    <ion-item *ngFor="let idea of ideas" (click)="textSearch = idea">
+      <ion-label color="primary">{{idea}}</ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6" *ngFor="let movie of moviesSearched" >
+        <ion-card (click)="openDetail(movie.id)">
+          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="" srcset=""
+          onerror="this.src='assets/no-image-banner.jpg'" />
+          <ion-card-header>
+            <ion-card-subtitle>{{movie.release_date}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <h2>{{movie.title}}</h2> 
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

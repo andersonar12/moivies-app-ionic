@@ -1,0 +1,26 @@
+
+<ion-slides *ngIf="movies.length >= 1" mode="md" #slides [options]="{ slidesPerView: 3.3, autoplay: { delay: 3000 } }">
+  <ion-slide *ngFor="let movie of movies" style="margin-bottom: 20px; display: block">
+    <ion-card class="mb-0" (click)="openDetail(movie.id)">
+      <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="poster" alt="" srcset=""
+        onerror="this.src='assets/no-image-banner.jpg'" />
+    </ion-card>
+
+    <!--  <p class="mt-0 mb-0">{{movie.title}}</p> -->
+  </ion-slide>
+</ion-slides>
+
+<ion-grid *ngIf="movies.length >= 1" fixed>
+  <ion-row>
+    <ion-col size="12" style="display: flex; justify-content: space-around">
+      <ion-button shape="round" size="small" color="primary" (click)="prev()"
+        ><ion-icon name="caret-back-outline"></ion-icon
+      ></ion-button>
+      <ion-button shape="round" size="small" color="primary" (click)="next()"
+        ><ion-icon name="caret-forward-outline"></ion-icon
+      ></ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
