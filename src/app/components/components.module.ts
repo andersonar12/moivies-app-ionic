@@ -6,23 +6,25 @@ import { SlideshowPosterComponent } from './slideshow-poster/slideshow-poster.co
 import { SlideshowParComponent } from './slideshow-par/slideshow-par.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { DetailComponent } from './detail/detail.component';
-import { StorageService } from '../storage.service';
+import { StorageService } from '../services/storage.service';
+import { TopToolbarComponent } from './top-toolbar/top-toolbar.component';
 
 
 
 @NgModule({
-  declarations: [SlideshowBackdropComponent,SlideshowPosterComponent,SlideshowParComponent,DetailComponent],
+  declarations: [SlideshowBackdropComponent, SlideshowPosterComponent, SlideshowParComponent, DetailComponent, TopToolbarComponent],
   imports: [
     CommonModule,
     IonicModule,
     PipesModule
   ],
-  exports:[
+  exports: [
     SlideshowBackdropComponent,
     SlideshowPosterComponent,
     SlideshowParComponent,
-    DetailComponent
+    DetailComponent,
+    TopToolbarComponent
   ],
-  entryComponents:[DetailComponent]
+  entryComponents: [DetailComponent]
 })
 export class ComponentsModule { }

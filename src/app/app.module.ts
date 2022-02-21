@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ImagenPipe } from './pipes/imagen.pipe';
 import { IonicStorageModule } from '@ionic/storage-angular';
-import { StorageService } from './storage.service';
+import { StorageService } from './services/storage.service';
 
 
 @NgModule({
@@ -33,4 +33,4 @@ import { StorageService } from './storage.service';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

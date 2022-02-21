@@ -1,23 +1,10 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-
-    <ion-buttons  slot="start">
-      <ion-button class="menu-toggle">
-        <ion-icon  name="menu"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-
-    <ion-title>
-      Buscar
-    </ion-title>
-  </ion-toolbar>
+  <app-top-toolbar [title]="'Buscar'"></app-top-toolbar>
 </ion-header>
 
 <ion-toolbar class="pt-4">
   <ion-searchbar placeholder="Buscar Pelicula" animated [value]="textSearch"(ionChange)="onSearchChange($event)" [debounce]="700" ></ion-searchbar>
 </ion-toolbar>
-
-
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">

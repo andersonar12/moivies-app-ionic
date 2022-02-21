@@ -12,17 +12,17 @@
   <ion-content>
     <ion-list>
 
-      <ion-item routerLink="/tabs/tab1">
+      <ion-item (click)="menu.close('first')" routerLink="/tabs/tab1">
         <ion-icon name="caret-forward-circle" slot="start"></ion-icon>
         Peliculas
       </ion-item>
 
-      <ion-item routerLink="/tabs/tab2">
+      <ion-item (click)="menu.close('first')" routerLink="/tabs/tab2">
         <ion-icon  name="search" slot="start"></ion-icon>
         Buscar
       </ion-item>
 
-      <ion-item routerLink="/tabs/tab3">
+      <ion-item (click)="menu.close('first')" routerLink="/tabs/tab3">
         <ion-icon name="thumbs-up" slot="start"></ion-icon>
         Favoritos
       </ion-item>

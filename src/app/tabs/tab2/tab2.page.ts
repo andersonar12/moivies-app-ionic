@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DetailComponent } from 'src/app/components/detail/detail.component';
-import { MoviedbService } from 'src/app/moviedb.service';
+import { MoviedbService } from 'src/app/services/moviedb.service';
 import { Movie } from 'src/app/types.movies';
 
 @Component({
@@ -12,13 +12,13 @@ import { Movie } from 'src/app/types.movies';
 export class Tab2Page {
 
   textSearch = ''
-  moviesSearched:Movie[]=[]
+  moviesSearched: Movie[] = []
   loading = false
-  ideas:string[] = ['Spiderman','Avengers', 'El señor de los anillos','La vida es bella']
+  ideas: string[] = ['Spiderman', 'Avengers', 'El señor de los anillos', 'La vida es bella']
 
-  constructor(private moviedbService:MoviedbService, private modalCtrl:ModalController) {}
+  constructor(private moviedbService: MoviedbService, private modalCtrl: ModalController) { }
 
-  onSearchChange(event){
+  onSearchChange(event) {
     const query = event.detail.value
 
     if (query == '') {
@@ -26,28 +26,28 @@ export class Tab2Page {
       return
     }
     console.log(query);
-    this.loading=true
+    this.loading = true
     this.moviedbService.searchMovies(query)
-      .subscribe(({results})=>{
-  
+      .subscribe(({ results }) => {
+
         console.log(results)
-        this.loading=false
+        this.loading = false
         this.moviesSearched = results
-        
-      },(error)=>{
+
+      }, (error) => {
         this.moviesSearched = []
-        this.loading=false
+        this.loading = false
       })
   }
-  
-  async openDetail(id:number){
+
+  async openDetail(id: number) {
 
     const modal = await this.modalCtrl.create({
-      component:DetailComponent,
-      componentProps:{
+      component: DetailComponent,
+      componentProps: {
         id
       },
-      mode:'ios'
+      mode: 'ios'
     })
 
     modal.present()

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { MoviedbService } from '../../moviedb.service';
+import { MoviedbService } from '../../services/moviedb.service';
 import { Movie } from '../../types.movies';
 import { fromEvent, Observable, Subscription } from "rxjs";
 import { LoadingController, MenuController } from '@ionic/angular';
@@ -15,13 +15,13 @@ export class Tab1Page implements OnInit {
   popularMovies: Movie[] = []
   isEditable = false;
 
-  loading:any
+  loading: any
 
 
   /* Para escuchar cuando cambia el width de la pantalla */
   resizeObservable$: Observable<Event>
   resizeSubscription$: Subscription
- 
+
 
   constructor(public moviesService: MoviedbService,
     private menu: MenuController, public loadingController: LoadingController) { }
@@ -31,16 +31,16 @@ export class Tab1Page implements OnInit {
     await this.presentLoading()
 
     this.onResize()
-    
-   this.moviesService.getFeature().subscribe((resp)=>{
-    console.log('Feature',resp);
-    this.movies = resp.results
-   },(error)=>{},
-   ()=>{
-    this.loading.dismiss();
-   })
 
-   this.getPopulars()
+    this.moviesService.getFeature().subscribe((resp) => {
+      console.log('Feature', resp);
+      this.movies = resp.results
+    }, (error) => { },
+      () => {
+        this.loading.dismiss();
+      })
+
+    this.getPopulars()
   }
 
   openMenu() {
@@ -48,14 +48,14 @@ export class Tab1Page implements OnInit {
   }
 
   /* Para escuchar cuando cambia el width de la pantalla */
-  onResize(){
+  onResize() {
     this.resizeObservable$ = fromEvent(window, 'resize')
-    this.resizeSubscription$ = this.resizeObservable$.subscribe( (evt:any) => {
+    this.resizeSubscription$ = this.resizeObservable$.subscribe((evt: any) => {
       console.log('event:Resize ', evt.target.innerWidth)
     })
   }
 
-  loadMore(){
+  loadMore() {
     this.getPopulars()
   }
 
@@ -69,23 +69,23 @@ export class Tab1Page implements OnInit {
   }
 
 
-  getPopulars(){
-    this.moviesService.getPopulars().subscribe((resp)=>{
-      console.log('Populars',resp);
+  getPopulars() {
+    this.moviesService.getPopulars().subscribe((resp) => {
+      console.log('Populars', resp);
       this.popularMovies = this.popularMovies.concat(...resp.results)
-     },(error)=>{},
-     ()=>{
-      this.loading.dismiss();
+    }, (error) => { },
+      () => {
+        this.loading.dismiss();
 
-     })
+      })
   }
 
   onPlayerReady(event) {
 
-    if(screen.width < 700){
+    if (screen.width < 700) {
 
-    }	
-  } 
+    }
+  }
 
 
 

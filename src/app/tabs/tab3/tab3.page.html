@@ -1,16 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    
-    <ion-buttons  slot="start">
-      <ion-button class="menu-toggle">
-        <ion-icon  name="menu"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-
-    <ion-title>
-      Favoritos
-    </ion-title>
-  </ion-toolbar>
+  <app-top-toolbar [title]="'Favoritos'"></app-top-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -20,32 +9,21 @@
       <ion-title size="large">Favoritos</ion-title>
     </ion-toolbar>
   </ion-header>
-<!-- 
+
   <ion-grid fixed>
-    <ion-row>
-      <ion-col >
 
+    <ion-row *ngFor="let genre of genres ">
+
+      <ion-col>
+        <h4>{{genre.name}}</h4>
       </ion-col>
-
+      <ion-col size="12" *ngIf="movies.length > 0">
+        <!--  Con el pipe (genresFilter) modificamos la data de tal manera que filtramos por genero de pelicula  -->
+        <app-slideshow-poster [movies]="movies | genresFilter : genre"></app-slideshow-poster>
+      </ion-col>
     </ion-row>
-  </ion-grid> -->
 
- <!--   -->
+  </ion-grid>
 
-    <ion-grid fixed>
 
-      <ion-row *ngFor="let genre of genres ">
-
-        <ion-col ><h4>{{genre.name}}</h4></ion-col>
-        <ion-col size="12" *ngIf="movies.length > 0" >
-     <!--  Con el pipe (genresFilter) modificamos la data de tal manera que filtramos por genero de pelicula  -->
-          <app-slideshow-poster [movies]="movies | genresFilter : genre" ></app-slideshow-poster>
-        </ion-col>
-      </ion-row>
-
-    </ion-grid>
-  
-
- 
 </ion-content>
-

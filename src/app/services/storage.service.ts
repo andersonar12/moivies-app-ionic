@@ -2,24 +2,24 @@ import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 
-import { MovieDetailResponse } from './types.movies';
+import { MovieDetailResponse } from '../types.movies';
 @Injectable({
   providedIn: 'root'
 })
 
 export class StorageService {
 
-  public movies: MovieDetailResponse[]=[]
+  public movies: MovieDetailResponse[] = []
 
 
   private _storage: Storage | null = null;
 
-  constructor(private storage: Storage,public toastController: ToastController) {
+  constructor(private storage: Storage, public toastController: ToastController) {
     this.loadMoviesFavorites()
     /* this.init() */;
   }
 
-  async presentToast(message:string) {
+  async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,
       duration: 1500
@@ -30,10 +30,10 @@ export class StorageService {
   async init() {
 
     try {
-      this.storage.length().then((lenght)=>{
-      console.log(lenght);
-    })
-      
+      this.storage.length().then((lenght) => {
+        console.log(lenght);
+      })
+
     } catch (error) {
       console.log(error)
       const storage = await this.storage.create();
@@ -42,7 +42,7 @@ export class StorageService {
 
   }
 
-   async saveMovie(movie) {
+  async saveMovie(movie) {
 
     let message = ''
 
@@ -51,23 +51,23 @@ export class StorageService {
     if (result) {
       this.movies = this.movies.filter(element => element.id !== movie.id)
       message = 'Removido de Favoritos'
-      
+
     } else {
       this.movies.push(movie)
       message = 'Agregada a Favoritos'
     }
 
-    console.log('Peliculas almacenadas',this.movies);
+    console.log('Peliculas almacenadas', this.movies);
     this.presentToast(message)
 
     /* localStorage.setItem('movies_favorites',JSON.stringify(this.movies) ) */
-    
+
     /* return await this._storage?.set('movies_favorites', this.movies); */
 
-    return  localStorage.setItem('movies_favorites',JSON.stringify(this.movies) )
+    return localStorage.setItem('movies_favorites', JSON.stringify(this.movies))
   }
 
-  async loadMoviesFavorites(){
+  async loadMoviesFavorites() {
 
     /* await this._storage?.get('movies_favorites').then(res=>{
       this.movies = res || []
@@ -79,10 +79,10 @@ export class StorageService {
     return this.movies
   }
 
-  async movieExists( id:number){
-    
+  async movieExists(id: number) {
+
     await this.loadMoviesFavorites()
-    const finded = this.movies.find( element =>element.id === id )
+    const finded = this.movies.find(element => element.id === id)
 
     return (finded) ? true : false
   }
