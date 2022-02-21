@@ -1,36 +1,38 @@
-<ion-slides mode="md" #slides [options]="{ slidesPerView: 3.3, autoplay: {delay: 3000}, spaceBetween:-10}" >
-
-  <ion-slide *ngFor="let moviePar of movies | pares" style="margin-bottom: 20px; display: block;">
-
+<div *ngIf="movies.length > 0">
+  <ion-slides mode="md" #slides [options]="{ slidesPerView: 3.3, autoplay: {delay: 3000}, spaceBetween:-10}" >
+  
+    <ion-slide *ngFor="let moviePar of movies | pares" style="margin-bottom: 20px; display: block;">
+  
+      <ion-row>
+        <ion-col size="12" *ngFor="let movie of moviePar">
+          <ion-card class="mb-0" (click)="openDetail(movie.id)">
+            <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="poster" onerror="this.src='assets/no-image-banner.jpg'">
+          </ion-card>
+        </ion-col>
+      </ion-row>
+  
+      <!-- <p class="mt-0 mb-0">{{movie.title}}</p> -->
+     
+    </ion-slide>
+  
+    <ion-slide style="height:auto">
+      <ion-button (click)="onClick()" expand="full" size="large" ><!-- style="position: relative; top:13%" -->
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-slide>
+  
+  </ion-slides>
+  
+  <ion-grid fixed>
     <ion-row>
-      <ion-col size="12" *ngFor="let movie of moviePar">
-        <ion-card class="mb-0" (click)="openDetail(movie.id)">
-          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="poster" onerror="this.src='assets/no-image-banner.jpg'">
-        </ion-card>
+      <ion-col size="12" style="display: flex; justify-content: space-around">
+        <ion-button shape="round" size="small" color="primary" (click)="prev()"
+          ><ion-icon name="caret-back-outline"></ion-icon
+        ></ion-button>
+        <ion-button shape="round" size="small" color="primary" (click)="next()"
+          ><ion-icon name="caret-forward-outline"></ion-icon
+        ></ion-button>
       </ion-col>
     </ion-row>
-
-    <!-- <p class="mt-0 mb-0">{{movie.title}}</p> -->
-   
-  </ion-slide>
-
-  <ion-slide style="height:auto">
-    <ion-button (click)="onClick()" expand="full" size="large" ><!-- style="position: relative; top:13%" -->
-      <ion-icon slot="icon-only" name="add"></ion-icon>
-    </ion-button>
-  </ion-slide>
-
-</ion-slides>
-
-<ion-grid fixed>
-  <ion-row>
-    <ion-col size="12" style="display: flex; justify-content: space-around">
-      <ion-button shape="round" size="small" color="primary" (click)="prev()"
-        ><ion-icon name="caret-back-outline"></ion-icon
-      ></ion-button>
-      <ion-button shape="round" size="small" color="primary" (click)="next()"
-        ><ion-icon name="caret-forward-outline"></ion-icon
-      ></ion-button>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+  </ion-grid>
+</div>
